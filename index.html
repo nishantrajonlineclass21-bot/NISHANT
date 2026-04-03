@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kashi Steel Craft — Forging Strength, Crafting Excellence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #4A90C4;
+    --sky-light: #7BB3D8;
+    --sky-pale: #E8F4FC;
+    --sky-deep: #1E5F8A;
+    --grey-dark: #1C1C1E;
+    --grey-mid: #3A3A3C;
+    --grey-soft: #8E8E93;
+    --grey-light: #F2F2F7;
+    --white: #FFFFFF;
+    --gold: #B8977E;
+    --text: #1C1C1E;
+    --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(74,144,196,0.12);
+    transition: box-shadow var(--transition);
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.08); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 38px; height: 38px;
+    background: var(--sky-deep);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-icon svg { width: 18px; height: 18px; fill: white; }
+  .nav-brand-text { display: flex; flex-direction: column; line-height: 1; }
+  .nav-brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 2px;
+    color: var(--grey-dark);
+  }
+  .nav-brand-sub {
+    font-size: 9px; letter-spacing: 3px;
+    color: var(--sky); text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--grey-mid);
+    transition: color var(--transition);
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--sky);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform var(--transition);
+  }
+  .nav-links a:hover { color: var(--sky); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    background: var(--sky-deep);
+    color: white !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    letter-spacing: 1.5px !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--sky) !important; color: white !important; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    background: var(--grey-dark);
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(135deg, rgba(30,95,138,0.85) 0%, rgba(28,28,30,0.75) 60%),
+      url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat;
+  }
+
+  .hero-grid-overlay {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(74,144,196,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,144,196,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 120px 80px 80px;
+    max-width: 780px;
+  }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+  .hero-eyebrow-line {
+    width: 48px; height: 1px; background: var(--sky-light);
+  }
+  .hero-eyebrow span {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--sky-light); font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: white;
+    margin-bottom: 8px;
+    opacity: 0; animation: fadeUp 0.9s ease 0.5s forwards;
+  }
+  .hero-title strong {
+    font-weight: 600;
+    color: var(--sky-light);
+  }
+
+  .hero-slogan {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(16px, 2.2vw, 22px);
+    letter-spacing: 5px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 48px;
+    opacity: 0; animation: fadeUp 0.9s ease 0.7s forwards;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.9s ease 0.9s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--sky);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 2px;
+    font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none;
+    transition: background var(--transition), transform 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--sky-deep); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 2px;
+    font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none;
+    transition: all var(--transition);
+    background: transparent;
+    cursor: pointer;
+  }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  /* Quality Badge */
+  .quality-badge {
+    position: absolute; right: 80px; bottom: 80px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(74,144,196,0.4);
+    backdrop-filter: blur(12px);
+    padding: 24px 28px;
+    border-radius: 4px;
+    text-align: center;
+    opacity: 0; animation: fadeUp 1s ease 1.2s forwards;
+    z-index: 2;
+  }
+  .badge-icon {
+    width: 44px; height: 44px;
+    background: var(--sky);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px;
+  }
+  .badge-icon svg { width: 22px; height: 22px; fill: white; }
+  .badge-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px; letter-spacing: 3px;
+    color: var(--sky-light);
+    margin-bottom: 10px;
+  }
+  .badge-items {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .badge-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: rgba(255,255,255,0.8);
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--sky);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: var(--sky-deep);
+    padding: 28px 80px;
+    display: flex; justify-content: space-around; align-items: center;
+    flex-wrap: wrap; gap: 24px;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; letter-spacing: 2px;
+    color: white; display: block;
+  }
+  .stat-label {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); font-weight: 500;
+  }
+  .stat-divider {
+    width: 1px; height: 40px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  /* ── SECTION BASICS ── */
+  section { padding: 100px 80px; }
+  .section-eyebrow {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 16px;
+  }
+  .eyebrow-line { width: 36px; height: 1px; background: var(--sky); }
+  .eyebrow-text {
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--sky); font-weight: 500;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400; line-height: 1.1;
+    color: var(--grey-dark);
+    margin-bottom: 20px;
+  }
+  .section-subtitle {
+    font-size: 15px; color: var(--grey-soft);
+    max-width: 520px; line-height: 1.7;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--grey-light); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    margin-top: 60px;
+  }
+  .service-card {
+    background: white;
+    padding: 44px 36px;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: transform 0.3s ease;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--sky);
+    transition: height 0.4s ease;
+  }
+  .service-card:hover::before { height: 100%; }
+  .service-card:hover { transform: translateY(-4px); }
+  .service-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px; letter-spacing: 2px;
+    color: var(--sky-pale);
+    line-height: 1;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+  }
+  .service-card:hover .service-num { color: rgba(74,144,196,0.15); }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: var(--sky-pale);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    transition: background 0.3s;
+  }
+  .service-card:hover .service-icon { background: var(--sky); }
+  .service-icon svg { width: 24px; height: 24px; fill: var(--sky); transition: fill 0.3s; }
+  .service-card:hover .service-icon svg { fill: white; }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 500;
+    color: var(--grey-dark);
+    margin-bottom: 12px;
+  }
+  .service-desc {
+    font-size: 13px; color: var(--grey-soft); line-height: 1.7;
+  }
+
+  /* ── HOW WE WORK ── */
+  #process { background: var(--grey-dark); }
+  #process .section-title { color: white; }
+  #process .section-subtitle { color: rgba(255,255,255,0.45); }
+  #process .eyebrow-text { color: var(--sky-light); }
+  #process .eyebrow-line { background: var(--sky-light); }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    position: relative;
+  }
+  .process-step {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(74,144,196,0.12);
+    padding: 40px 32px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .process-step:hover { background: rgba(74,144,196,0.08); }
+  .process-connector {
+    position: absolute; top: 52px; right: -1px;
+    width: 28px; height: 1px;
+    background: rgba(74,144,196,0.3);
+    z-index: 1;
+  }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px; letter-spacing: 2px;
+    color: rgba(74,144,196,0.15);
+    line-height: 1; margin-bottom: 20px;
+  }
+  .step-icon-ring {
+    width: 52px; height: 52px;
+    border: 1px solid rgba(74,144,196,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+  }
+  .step-icon-ring svg { width: 22px; height: 22px; fill: var(--sky-light); }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 500;
+    color: white; margin-bottom: 12px;
+  }
+  .step-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; }
+
+  /* ── GALLERY ── */
+  #gallery { background: white; }
+  .gallery-intro {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 3px;
+  }
+  .gallery-item {
+    position: relative; overflow: hidden;
+    background: var(--grey-light);
+    aspect-ratio: 4/3;
+  }
+  .gallery-item:first-child {
+    grid-column: span 2;
+    aspect-ratio: auto;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+  .gallery-item:hover img { transform: scale(1.04); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(30,95,138,0.7) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.4s;
+    display: flex; align-items: flex-end; padding: 24px;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-label {
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    color: white; font-weight: 500;
+  }
+
+  /* ── QUOTE FORM ── */
+  #quote { background: var(--grey-light); }
+  .quote-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    margin-top: 60px;
+    align-items: start;
+  }
+  .quote-aside { padding-top: 8px; }
+  .quote-promise {
+    display: flex; flex-direction: column; gap: 28px;
+    margin-top: 48px;
+  }
+  .promise-item {
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .promise-icon {
+    width: 36px; height: 36px;
+    background: var(--sky-pale);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .promise-icon svg { width: 16px; height: 16px; fill: var(--sky-deep); }
+  .promise-title { font-size: 14px; font-weight: 500; color: var(--grey-dark); margin-bottom: 4px; }
+  .promise-text { font-size: 13px; color: var(--grey-soft); line-height: 1.6; }
+
+  .quote-form {
+    background: white;
+    padding: 48px 44px;
+    border: 1px solid rgba(74,144,196,0.15);
+    border-top: 3px solid var(--sky);
+  }
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 500;
+    color: var(--grey-dark); margin-bottom: 36px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group.full { grid-column: span 2; }
+  label {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 500; color: var(--grey-mid);
+  }
+  input, textarea, select {
+    border: 1px solid #E0E0E5;
+    border-radius: 2px;
+    padding: 13px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--grey-dark);
+    background: white;
+    transition: border-color 0.3s;
+    outline: none;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--sky); }
+  textarea { resize: vertical; min-height: 100px; }
+  select { cursor: pointer; }
+  .form-row-select {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .upload-area {
+    border: 1px dashed rgba(74,144,196,0.4);
+    border-radius: 2px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: var(--sky-pale);
+    margin-bottom: 20px;
+  }
+  .upload-area:hover { border-color: var(--sky); background: rgba(232,244,252,0.8); }
+  .upload-area input[type="file"] { display: none; }
+  .upload-icon { width: 32px; height: 32px; fill: var(--sky); margin: 0 auto 10px; display: block; }
+  .upload-text { font-size: 13px; color: var(--grey-soft); }
+  .upload-text span { color: var(--sky); font-weight: 500; }
+  .btn-submit {
+    width: 100%;
+    background: var(--sky-deep);
+    color: white;
+    border: none;
+    padding: 17px;
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 3px; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-submit:hover { background: var(--sky); transform: translateY(-1px); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--grey-dark); padding-bottom: 0; }
+  #contact .section-title { color: white; }
+  #contact .eyebrow-text { color: var(--sky-light); }
+  #contact .eyebrow-line { background: var(--sky-light); }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    margin-top: 60px;
+    align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 32px; }
+  .contact-item { display: flex; gap: 20px; align-items: flex-start; }
+  .contact-item-icon {
+    width: 44px; height: 44px;
+    border: 1px solid rgba(74,144,196,0.35);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-item-icon svg { width: 18px; height: 18px; fill: var(--sky-light); }
+  .contact-item-label {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--sky-light); margin-bottom: 6px; font-weight: 500;
+  }
+  .contact-item-value {
+    font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6;
+  }
+  .contact-phones {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .contact-phones a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 500;
+    color: white; text-decoration: none;
+    transition: color 0.3s;
+  }
+  .contact-phones a:hover { color: var(--sky-light); }
+
+  .map-container {
+    width: 100%; height: 400px;
+    border: 1px solid rgba(74,144,196,0.2);
+    overflow: hidden;
+    position: relative;
+  }
+  .map-container iframe {
+    width: 100%; height: 100%;
+    border: none; filter: grayscale(30%) brightness(0.95);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111113;
+    padding: 40px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    border-top: 1px solid rgba(74,144,196,0.1);
+  }
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px; letter-spacing: 3px;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-slogan {
+    font-size: 11px; letter-spacing: 3px;
+    color: rgba(255,255,255,0.25); text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .footer-right {
+    font-size: 12px; color: rgba(255,255,255,0.25);
+    text-align: right;
+  }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed; bottom: 32px; right: 32px;
+    z-index: 9999;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+  }
+  .wa-tooltip {
+    background: var(--grey-dark);
+    color: white;
+    font-size: 12px; font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0; transform: translateX(8px);
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .wa-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
+  .wa-btn {
+    width: 58px; height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: waPulse 2.5s ease-in-out infinite;
+  }
+  .wa-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+  .wa-btn svg { width: 30px; height: 30px; fill: white; }
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 4px 32px rgba(37,211,102,0.65); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 0 32px; }
+    section { padding: 80px 40px; }
+    .hero-content { padding: 120px 40px 80px; }
+    .quality-badge { right: 40px; bottom: 40px; }
+    .stats-strip { padding: 28px 40px; }
+    footer { padding: 32px 40px; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:first-child { grid-column: span 1; }
+    .quote-layout { grid-template-columns: 1fr; gap: 48px; }
+    .contact-layout { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    section { padding: 60px 24px; }
+    .hero-content { padding: 100px 24px 60px; }
+    .quality-badge { display: none; }
+    .stats-strip { padding: 24px; gap: 12px; }
+    .stat-divider { display: none; }
+    footer { padding: 28px 24px; }
+    .process-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-row-select { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: span 1; }
+    .quote-form { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z"/></svg>
+    </div>
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">Kashi Steel Craft</span>
+      <span class="nav-brand-sub">Ghaziabad · Est. 2005</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#quote" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Premium Metal Fabrication · Ghaziabad</span>
+    </div>
+    <h1 class="hero-title">
+      Kashi<br><strong>Steel Craft</strong>
+    </h1>
+    <p class="hero-slogan">Forging Strength, Crafting Excellence</p>
+    <div class="hero-actions">
+      <a href="#quote" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Get a Free Quote
+      </a>
+      <a href="#gallery" class="btn-outline">View Our Work</a>
+    </div>
+  </div>
+  <div class="quality-badge">
+    <div class="badge-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 1l3 6.3L22 8.5l-5 4.9 1.2 6.9L12 17l-6.2 3.3L7 13.4 2 8.5l7-.2z"/></svg>
+    </div>
+    <div class="badge-title">Material Quality Guarantee</div>
+    <div class="badge-items">
+      <div class="badge-item"><div class="badge-dot"></div><span>Apollo Iron — ISI Certified</span></div>
+      <div class="badge-item"><div class="badge-dot"></div><span>304 Grade Stainless Steel</span></div>
+      <div class="badge-item"><div class="badge-dot"></div><span>Rust-proof powder coating</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <span class="stat-num">15+</span>
+    <span class="stat-label">Years Experience</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">800+</span>
+    <span class="stat-label">Projects Completed</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">100%</span>
+    <span class="stat-label">Apollo Iron Used</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">304</span>
+    <span class="stat-label">Grade SS Available</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-eyebrow reveal">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">What We Build</span>
+  </div>
+  <h2 class="section-title reveal">Our Core Services</h2>
+  <p class="section-subtitle reveal">From elegant main gates to precision-crafted railings — every piece engineered for lasting strength and refined aesthetics.</p>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9v12h18V9M3 9L12 3l9 6M9 21V12h6v9"/></svg>
+      </div>
+      <div class="service-name">Main Gates</div>
+      <p class="service-desc">Custom-designed compound and driveway gates in iron and SS. Sliding, swing, and automatic options for homes and commercial properties.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 3h18v4H3zM3 10h18M3 17h18M7 7v10M17 7v10M12 7v10"/></svg>
+      </div>
+      <div class="service-name">SS Railings</div>
+      <p class="service-desc">Staircase and balcony railings in 304-grade stainless steel. Mirror polish or matte finish. Architecturally precise and maintenance-free.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="3" width="2" height="18"/><rect x="15" y="3" width="2" height="18"/><rect x="3" y="7" width="18" height="2"/><rect x="3" y="15" width="18" height="2"/></svg>
+      </div>
+      <div class="service-name">Iron Chaukhat</div>
+      <p class="service-desc">Heavy-duty door frames in Apollo Iron, precisely welded for perfect fit. Corrosion-resistant finish for decades of dependable use.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM7 3v18M11 3v18M15 3v18M3 7h18M3 11h18M3 15h18"/></svg>
+      </div>
+      <div class="service-name">Window Grills</div>
+      <p class="service-desc">Decorative and security grills for residential and commercial windows. Custom patterns, powder-coated in your choice of colour.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section id="process">
+  <div class="section-eyebrow reveal">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">Our Methodology</span>
+  </div>
+  <h2 class="section-title reveal">How We Work</h2>
+  <p class="section-subtitle reveal">A transparent, four-step process that ensures quality at every stage — from your doorstep to final installation.</p>
+  <div class="process-grid reveal">
+    <div class="process-step">
+      <div class="process-connector"></div>
+      <div class="step-num">01</div>
+      <div class="step-icon-ring">
+        <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+      </div>
+      <div class="step-title">Site Visit & Measurement</div>
+      <p class="step-desc">Our expert visits your property to take precise measurements, assess the site, and understand your exact requirements.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-connector"></div>
+      <div class="step-num">02</div>
+      <div class="step-icon-ring">
+        <svg viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      </div>
+      <div class="step-title">Design Selection</div>
+      <p class="step-desc">Choose from our portfolio or share your inspiration. We draft a custom design with detailed 2D layout for your approval.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-connector"></div>
+      <div class="step-num">03</div>
+      <div class="step-icon-ring">
+        <svg viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <div class="step-title">Precision Fabrication</div>
+      <p class="step-desc">Using Apollo Iron and 304 SS, our skilled welders fabricate your piece with CNC-level precision in our workshop.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-icon-ring">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+      </div>
+      <div class="step-title">Professional Installation</div>
+      <p class="step-desc">Our installation team fits everything perfectly on-site with full cleanup. Quality checked and handed over with a service warranty.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-intro">
+    <div>
+      <div class="section-eyebrow reveal">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Craftsmanship Showcase</span>
+      </div>
+      <h2 class="section-title reveal">Our Work</h2>
+    </div>
+    <a href="#quote" class="btn-primary reveal" style="align-self:flex-end">Order Similar →</a>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80" alt="Premium main gate fabrication" loading="lazy">
+      <div class="gallery-overlay"><span class="gallery-label">Custom Main Gate · Apollo Iron</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="SS Railing staircase" loading="lazy">
+      <div class="gallery-overlay"><span class="gallery-label">SS Railing · 304 Grade</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=600&q=80" alt="Steel window grills" loading="lazy">
+      <div class="gallery-overlay"><span class="gallery-label">Decorative Window Grills</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Iron door frame chaukhat" loading="lazy">
+      <div class="gallery-overlay"><span class="gallery-label">Iron Chaukhat · Heavy-duty</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&q=80" alt="Modern compound gate" loading="lazy">
+      <div class="gallery-overlay"><span class="gallery-label">Compound Gate · Powder Coated</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE FORM -->
+<section id="quote">
+  <div class="section-eyebrow reveal">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">Start Your Project</span>
+  </div>
+  <h2 class="section-title reveal">Custom Order & Free Quote</h2>
+  <div class="quote-layout">
+    <div class="quote-aside reveal">
+      <p style="font-size:15px;color:var(--grey-soft);line-height:1.8;">Tell us what you need. We'll visit your site, measure everything, and send you a detailed quote within 24 hours — completely free, no obligation.</p>
+      <div class="quote-promise">
+        <div class="promise-item">
+          <div class="promise-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <div class="promise-title">24-Hour Quote Response</div>
+            <p class="promise-text">Submit your requirements today and receive a detailed quote by tomorrow.</p>
+          </div>
+        </div>
+        <div class="promise-item">
+          <div class="promise-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <div class="promise-title">Material Quality Guarantee</div>
+            <p class="promise-text">Only Apollo Iron and 304 Grade SS — certified, proven, and guaranteed.</p>
+          </div>
+        </div>
+        <div class="promise-item">
+          <div class="promise-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <div>
+            <div class="promise-title">Call Us Directly</div>
+            <div style="display:flex;flex-direction:column;gap:2px;margin-top:4px;">
+              <a href="tel:9410411499" style="font-size:16px;font-weight:500;color:var(--sky-deep);text-decoration:none;">+91 94104 11499</a>
+              <a href="tel:9891963282" style="font-size:16px;font-weight:500;color:var(--sky-deep);text-decoration:none;">+91 98919 63282</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="quote-form reveal">
+      <div class="form-title">Request a Free Quote</div>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="requirement">Describe Your Requirement</label>
+            <textarea id="requirement" placeholder="E.g. I need a sliding main gate for my 14ft wide driveway, modern design with grill pattern..." required></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="measurements">Approximate Measurements</label>
+            <input type="text" id="measurements" placeholder="E.g. Gate: 14ft wide × 6ft tall, Railing: 30ft length">
+          </div>
+        </div>
+        <div class="form-row-select">
+          <div class="form-group">
+            <label for="iron">Iron Quality</label>
+            <select id="iron">
+              <option value="">Select iron grade</option>
+              <option value="local">Local Iron (Economy)</option>
+              <option value="apollo">Apollo Iron (Premium — Recommended)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="steel">Steel Quality</label>
+            <select id="steel">
+              <option value="">Select steel grade</option>
+              <option value="202">202 Grade Steel (Standard)</option>
+              <option value="304">304 Grade Steel (Premium — Recommended)</option>
+            </select>
+          </div>
+        </div>
+        <div class="upload-area" onclick="document.getElementById('design-upload').click()">
+          <input type="file" id="design-upload" accept="image/*,.pdf" onchange="showFileName(this)">
+          <svg class="upload-icon" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <p class="upload-text" id="upload-label"><span>Upload a design photo</span> or drag it here<br><small style="color:var(--grey-soft);margin-top:4px;display:block;">JPG, PNG or PDF · Max 10MB</small></p>
+        </div>
+        <button type="submit" class="btn-submit">Send My Quote Request →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow reveal">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">Visit Our Workshop</span>
+  </div>
+  <h2 class="section-title reveal">Find Us</h2>
+  <div class="contact-layout">
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div>
+          <div class="contact-item-label">Workshop Address</div>
+          <div class="contact-item-value">In Front of CPS International School,<br>Block E, Govindpuram,<br>Ghaziabad — 201013, U.P.</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        </div>
+        <div>
+          <div class="contact-item-label">Phone Numbers</div>
+          <div class="contact-phones">
+            <a href="tel:9410411499">+91 94104 11499</a>
+            <a href="tel:9891963282">+91 98919 63282</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <div class="contact-item-label">Working Hours</div>
+          <div class="contact-item-value">Monday – Saturday: 8:00 AM – 7:00 PM<br>Sunday: By Appointment</div>
+        </div>
+      </div>
+      <a href="https://wa.me/919410411499?text=Hello%20Kashi%20Steel%20Craft%2C%20I%20need%20a%20quote%20for%20my%20project." target="_blank" class="btn-primary" style="margin-top:8px;align-self:flex-start">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+    <div class="reveal">
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.8!2d77.4997721!3d28.6873335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf3003fdb33ed%3A0x6f7662a2bf598bbb!2sKashi+Steel+craft!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Kashi Steel Craft Location — Govindpuram, Ghaziabad">
+        </iframe>
+      </div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.3);margin-top:12px;letter-spacing:1px;">In Front of CPS International School, Block E, Govindpuram, GZB 201013</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Kashi Steel Craft</div>
+    <div class="footer-slogan">Forging Strength, Crafting Excellence</div>
+  </div>
+  <div class="footer-right">
+    <div>Govindpuram, Ghaziabad — 201013</div>
+    <div style="margin-top:4px;">+91 94104 11499 · +91 98919 63282</div>
+    <div style="margin-top:8px;">© 2024 Kashi Steel Craft. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float">
+  <div class="wa-tooltip">Chat with us on WhatsApp</div>
+  <a class="wa-btn" href="https://wa.me/919410411499?text=Hello%20Kashi%20Steel%20Craft%2C%20I%20need%20a%20quote%20for%20my%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<script>
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // File upload label
+  function showFileName(input) {
+    const label = document.getElementById('upload-label');
+    if (input.files && input.files[0]) {
+      label.innerHTML = `<span>${input.files[0].name}</span> selected ✓`;
+    }
+  }
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const mobile = document.getElementById('mobile').value;
+    const req = document.getElementById('requirement').value;
+    const iron = document.getElementById('iron').value;
+    const steel = document.getElementById('steel').value;
+    const msg = `Hello Kashi Steel Craft!%0A%0AName: ${encodeURIComponent(name)}%0AMobile: ${mobile}%0ARequirement: ${encodeURIComponent(req)}%0AIron: ${iron || 'Not selected'}%0ASteel: ${steel || 'Not selected'}`;
+    window.open(`https://wa.me/919410411499?text=${msg}`, '_blank');
+  }
+
+  // Smooth scroll for all anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
